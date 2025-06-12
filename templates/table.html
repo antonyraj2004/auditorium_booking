@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hall Booking Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/style-table.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="top">
+            <div class="logo">
+                <img src="/static/images/gnc logo.png" alt="Guru Nanak College Logo">
+            </div>
+            <div class="logotext">
+                <h1>Guru Nanak College (Autonomous), Chennai</h1>
+                <p>Guru Nanak Salai, Velachery, Chennai - 600042</p>
+            </div>
+        </header>
+
+        <!-- Table Section -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone No</th>
+                        <th>Department</th>
+                        <th>Event Name</th>
+                        <th>No. of Days</th>
+                        <th>Date From</th>
+                        <th>Date To</th>
+                        <th>Hall Name</th>
+                        <th>Time Slot</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if data %}
+                    {% for datas in data %}
+                    <tr>
+                        <td>{{datas["name"]}}</td>
+                        <td>{{datas["email"]}}</td>
+                        <td>{{datas["phone_no"]}}</td>
+                        <td>{{datas["department"]}}</td>
+                        <td>{{datas["event_name"]}}</td>
+                        <td>{{datas["no_of_days"]}}</td>
+                        <td>{{datas["date_from"]}}</td>
+                        <td>{{datas["date_to"]}}</td>
+                        <td>{{datas["hall"]}}</td>
+                        <td>{{datas["time_slot"]}}</td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="10" class="no-data">No Hall Is Booked</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <div class="a-tag">
+            <a href="{{url_for('home')}}" class="home-button">Go to Home</a>
+        </div>
+
+        <!-- Footer Section -->
+        <!-- <footer class="bottom">
+            <div class="address">
+                <h3>Guru Nanak College (Autonomous)</h3>
+                <p>Affiliated to University of Madras</p>
+                <p>Accredited at 'A++' Grade by NAAC | ISO 9001:2015 Certified</p>
+                <p>161, Guru Nanak Salai, Velachery, Chennai-600042, Tamil Nadu.</p>
+                <div class="contact">
+                    <h4>Contact Us</h4>
+                    <p><b>Tel:</b> 044-22451746, 044-22444621</p>
+                    <p><b>Email:</b> principal@gurunanakcollege.edu.in</p>
+                    <div class="social-icons">
+                        <i class="fa fa-facebook-square"></i>
+                        <i class="fa fa-youtube-play"></i>
+                        <i class="fa fa-instagram"></i>
+                        <i class="fa fa-linkedin"></i>
+                    </div>
+                </div>
+            </div>
+        </footer> -->
+    </div>
+</body>
+</html>

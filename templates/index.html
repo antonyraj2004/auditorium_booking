@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guru Nanak College auditorium Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+</head>
+<body>
+    <!-- top  -->
+    <div class="top">
+        <div class="logo">
+            <img src="/static/images/gnc logo.png" alt="logo">
+        </div>
+        <div class="logotext">
+            <h1 >GURU NANAK COLLEGE(AUTONOMOUS),CHENNAI</h1>
+            <P>Guru Nanak Salai,Velachery, chennai 600042</P>
+        </div>
+    </div>
+
+    <!-- Auditoriums -->
+     
+    <div class="main">
+        <h2>OUR COLLEGE AUDITORIUM HALLS</h2>
+        
+        <!-- Auditorium details -->
+        <!-- Singh auditorium -->
+       
+        <div class="details">
+            <h3>Shaheed Baba Deep Singh Auditorium</h3>
+            <div class="hall">
+                <img src="/static/images/auditorium out.jpg" alt="Singh auditorium">
+                <img src="/static/images/auditorium in.jpg" alt="Singh auditorium">
+            </div>
+            <p><i class="fa fa-map-marker" style="display: inline;"></i><b>Location:</b>Guru Amar Das Block </p>
+            <p><b>Capacity:</b>700seats</p>
+            
+        </div>
+
+        <div class="details">
+            <h3>Ac Seminar Hall</h3>
+            <div class="hall">
+                <img src="/static/images/AC out.jpg" alt="AC seminar hall">
+                <img src="/static/images/AC in.jpg" alt="AC seminar hall">
+            </div>
+            <p><i class="fa fa-map-marker"style="display: inline;"></i><b>Location:</b>Near Assembly Square </p>
+            <p><b>Capacity:</b>150seats</p>
+        </div>
+
+        <div class="details">
+            <h3>Non AC Seminar Hall</h3>
+            <div class="hall">
+                <img src="/static/images//nonac out.jpg" alt="Non AC Seminar">
+            </div>
+            <p><i class="fa fa-map-marker"style="display: inline;"></i><b>Location:</b>Above Singh Canteen </p>
+            <p><b>Capacity:</b>150seats</p>
+            
+        </div>
+
+        <div class="details">
+            <h3>Guru Teg bahadur auditorium</h3>
+            <div class="hall">
+                <img src="/static/images/guru teg out .JPG" alt="Guru Teg auditorium">
+                <img src="/static/images/guru teg in.JPG" alt="Guru Teg auditorium">
+            </div>
+            <p><i class="fa fa-map-marker"style="display: inline;"></i><b>Location:</b>Near Bhojan Canteen </p>
+            <p><b>Capacity:</b>150seats</p>
+        </div>
+
+        <div class="details">
+            <h3>Lt.Col. G.S. Gill Hall (Pivillion)</h3>
+            <div class="hall">
+                <img src="/static/images/pivillion out.jpg" alt="Pivillion Hall">
+                <img src="/static/images/pivillion in.jpg" alt="Pivillion Hall">
+            </div>
+            <p><i class="fa fa-map-marker"style="display: inline;"></i><b>Location:</b>Near Cricket Ground </p>
+            <p><b>Capacity:</b>100seats</p>
+        </div>
+        <div class="a-tag">
+            <a href="{{url_for('register')}}" class="home-button">Book now</a>
+        </div>
+        <div class="a-tag">
+            <a href="{{url_for('booked_slot')}}" class="home-button">Booked Slot</a>
+        </div>
+    </div>
+
+    <div class="bottom">
+        <div class="address">
+            <h3>Guru Nanak College(Autonomous)</h3>
+            <p>Affiliated to university of madras,</p>
+            <p>accredited at 'A++' Grade by NAAC An ISO 9001:2015 Certified instituion</p>
+            <p>161, Guru Nanak Salai, Velachery, Chennai-600042 Tamilnadu.</p>
+            <div class="us">
+            <h4> Contact us</h4>
+            <p><b>Tel:</b>044-22451746, 044-22444621</p>
+            <p><b>Email:</b>principal@gurunanakcollege.edu.in</p>
+            <div class="icon">
+                <i class="fa fa-facebook-square"></i>
+                <i class="fa fa-youtube-play"></i>
+                <i class="fa fa-instagram"></i>
+                <i class="fa fa-linkedin"></i>
+            </div>
+            </div>  
+        </div>
+
+    </div>
+</body>
+</html>

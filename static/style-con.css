@@ -1,0 +1,177 @@
+/* Root Variables */
+:root {
+    --primary-color: #002147;
+    --secondary-color: #0A3D62;
+    --accent-color: #3498db;
+    --text-color: #333;
+    --light-gray: #f5f6fa;
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: var(--background);
+    min-height: 100vh;
+}
+
+/* Header */
+.top {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 20px;
+    /* border-radius: 15px; */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    transition: transform 0.3s ease;
+    width: 100%;
+}
+.logo img {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+}
+.logotext {
+    color: white;
+}
+.logotext h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+.logotext p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Booking Confirmation Card */
+.confirmation-card {
+    background: var(--white);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 500px;
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+}
+
+.confirmation-card:hover {
+    transform: scale(1.05);
+}
+
+.confirmation-card .icon {
+    font-size: 50px;
+    color: green
+}
+
+.confirmation-card h2 {
+    color: var(--primary-color);
+    font-size: 40px;
+    /* width: 100px; */
+    text-align: center;
+}
+.confirmation-card p {
+    font-size: 25px;
+    color: var(--primary-color);
+}
+
+/* Table Section */
+.table-container {
+    width: 90%;
+    margin: auto;
+    overflow-x: auto;
+}
+.confirmation-card-btn{
+    background: var(--white);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 140px;
+    height: 6px;
+    transition: transform 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+    box-sizing: border-box;
+}
+
+.confirmation-card-btn h3 a{
+    font-size: 12.9px;
+    text-align: center;
+    width: 90%;
+    text-decoration: none;
+    color: white;
+    
+}
+
+.confirmation-card-btn:hover {
+    transform: scale(1.05);
+}
+
+
+/* Footer */
+/* .bottom {
+    background: var(--gradient);
+    padding: 40px;
+    color: var(--white);
+    box-shadow: 0 -4px 20px var(--shadow-color);
+    position: absolute;
+    width: 100%;
+}
+
+.address h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.address p {
+    font-size: 1rem;
+    line-height: 1.2;
+}
+
+.us h4{
+    margin: 10px 0;
+}
+
+.icon {
+    margin-top: 1.5rem;
+    
+    gap: 1.2rem;
+}
+
+.icon i:hover {
+    transform: translateY(-5px) scale(1.1);
+    color: var(--accent);
+    opacity: 1;
+} */
+/* Responsive Design */
+@media (max-width: 768px) {
+    .top {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo img {
+        margin-bottom: 10px;
+    }
+
+    .confirmation-card {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    table {
+        font-size: 14px;
+    }
+}

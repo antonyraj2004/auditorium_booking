@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guru Nanak College - Auditorium Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='style-form.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+<body>
+    <div class="top">
+        <div class="logo">
+            <img src="/static/images/gnc logo.png" alt="Guru Nanak College Logo">
+        </div>
+        <div class="logotext">
+            <h1>GURU NANAK COLLEGE (AUTONOMOUS), CHENNAI</h1>
+            <p>Guru Nanak Salai, Velachery, Chennai 600042</p>
+        </div>
+    </div>
+
+    <div class="main">
+        <h2 class="form-title">Auditorium Booking Form</h2>
+        <form action="/register" method="POST">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <i class="fa fa-user"></i>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email ID</label>
+                <i class="fa fa-envelope"></i>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone_no">Phone Number</label>
+                <i class="fa fa-phone"></i>
+                <input type="tel" id="phone_no" name="phone_no" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="department">Department</label>
+                <i class="fa fa-building"></i>
+                <input type="text" id="department" name="department" placeholder="Enter your department" required>
+            </div>
+
+            <div class="form-group">
+                <label for="event_name">Event Name</label>
+                <i class="fa fa-calendar-o"></i>
+                <input type="text" id="event_name" name="event_name" placeholder="Enter event name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="no_of_days">Number of Days</label>
+                <i class="fa fa-clock-o"></i>
+                <input type="number" id="no_of_days" name="no_of_days" min="1" placeholder="Enter number of days" required>
+            </div>
+
+            <div class="date-group">
+                <div class="form-group">
+                    <label for="date_from">From Date</label>
+                    <i class="fa fa-calendar"></i>
+                    <input type="date" id="date_from" name="date_from" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="to">To Date</label>
+                    <i class="fa fa-calendar"></i>
+                    <input type="date" id="to" name="to" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="hall">Select Hall</label>
+                <i class="fa fa-building-o"></i>
+                <select id="hall" name="hall" required>
+                    <option value="">Choose a hall</option>
+                    <option value="Shaheed Singh auditorium">Shaheed Baba Deep Singh Auditorium</option>
+                    <option value="Ac seminar">AC Seminar Hall</option>
+                    <option value="Non Ac seminar">Non AC Seminar Hall</option>
+                    <option value="guru teg">Guru Teg Bahadur Auditorium</option>
+                    <option value="gill pivillion">Lt.Col. G.S. Gill Hall (Pivillion)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="timeSlot">Time Slot</label>
+                <i class="fa fa-clock-o"></i>
+                <select id="timeSlot" name="timeSlot" required>
+                    <option value="">Select time slot</option>
+                    <option value="09:00-01:00">09:00 AM - 01:00 PM</option>
+                    <option value="01:00-05:00">01:30 PM - 05:00 PM</option>
+                </select>
+            </div>
+
+            <div class="button-group">
+                <button type="button" onclick="checkAvailability()">
+                    <i class="fa fa-search"></i> Check Availability
+                </button>
+                <button type="submit">
+                    <i class="fa fa-check"></i> Book Now
+                </button>
+                <button type="reset">
+                    <i class="fa fa-refresh"></i> Reset
+                </button>
+            </div>
+        </form>
+        <p id="availabilityMessage"></p>
+    </div>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    let dateFromInput = document.getElementById("date_from");
+    let dateToInput = document.getElementById("to");
+    let hallSelect = document.getElementById("hall");
+    let timeSlotSelect = document.getElementById("timeSlot");
+    let bookedDates = {}; // Store booked dates
+
+    // **Fetch Booked Dates for All Halls**
+    function fetchBookedDates() {
+        fetch('/get_booked_dates')
+            .then(response => response.json())
+            .then(data => {
+                bookedDates = data;
+                updateCalendar();
+            })
+            .catch(error => console.error("Error fetching booked dates:", error));
+    }
+
+    // **Disable Booked Dates in Date Picker**
+    function updateCalendar() {
+        let selectedHall = hallSelect.value;
+        if (!selectedHall) return;
+
+        let hallBookings = bookedDates[selectedHall] || [];
+        let disabledDates = hallBookings.map(booking => ({
+            from: booking.from,
+            to: booking.to
+        }));
+
+        flatpickr(dateFromInput, {
+            dateFormat: "Y-m-d",
+            disable: disabledDates
+        });
+
+        flatpickr(dateToInput, {
+            dateFormat: "Y-m-d",
+            disable: disabledDates
+        });
+    }
+
+    // **Check Availability of Selected Slot**
+    function checkAvailability() {
+        let dateFrom = dateFromInput.value;
+        let dateTo = dateToInput.value;
+        let hall = hallSelect.value;
+        let timeSlot = timeSlotSelect.value;
+
+        if (!dateFrom || !dateTo || !hall || !timeSlot) {
+            return; // Don't check if fields are empty
+        }
+
+        fetch(`/check_availability?date_from=${dateFrom}&date_to=${dateTo}&hall=${hall}&time_slot=${timeSlot}`)
+            .then(response => response.json())
+            .then(data => {
+                let message = document.getElementById("availabilityMessage");
+
+                if (data.available) {
+                    message.innerHTML = "✔️ Slot Available!";
+                    message.style.color = "green";
+                    dateFromInput.style.backgroundColor = "white";
+                    dateToInput.style.backgroundColor = "white";
+                } else {
+                    message.innerHTML = "❌ Slot Not Available!";
+                    message.style.color = "red";
+                    dateFromInput.style.backgroundColor = "red";
+                    dateToInput.style.backgroundColor = "red";
+                }
+            })
+            .catch(error => console.error("Error checking availability:", error));
+    }
+
+    // 🟢 **Attach Event Listeners**
+    hallSelect.addEventListener("change", updateCalendar);
+    dateFromInput.addEventListener("change", checkAvailability);
+    dateToInput.addEventListener("change", checkAvailability);
+    timeSlotSelect.addEventListener("change", checkAvailability);
+
+    fetchBookedDates(); // Load booked dates on page load
+});
+</script>
+
+    <div class="bottom">
+        <div class="address">
+            <h3>Guru Nanak College(Autonomous)</h3>
+            <p>Affiliated to University of Madras</p>
+            <p>Accredited at 'A++' Grade by NAAC An ISO 9001:2015 Certified Institution</p>
+            <p>161, Guru Nanak Salai, Velachery, Chennai-600042 Tamil Nadu.</p>
+            <div class="us">
+                <h4>Contact us</h4>
+                <p><b>Tel:</b> 044-22451746, 044-22444621</p>
+                <p><b>Email:</b> principal@gurunanakcollege.edu.in</p>
+                <div class="icon">
+                    <i class="fa fa-facebook-square"></i>
+                    <i class="fa fa-youtube-play"></i>
+                    <i class="fa fa-instagram"></i>
+                    <i class="fa fa-linkedin"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>
+
+    

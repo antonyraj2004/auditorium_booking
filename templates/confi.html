@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditorium Booking Confirmation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/style-con.css">
+</head>
+<body>
+   <div class="container">
+        <header class="top">
+            <div class="logo">
+                <img src="/static/images/gnc logo.png" alt="Guru Nanak College Logo">
+            </div>
+            <div class="logotext">
+                <h1>Guru Nanak College (Autonomous), Chennai</h1>
+                <p>Guru Nanak Salai, Velachery, Chennai - 600042</p>
+            </div>
+        </header> 
+
+        <div class="confirmation-card">
+            <div class="icon">
+                <i class="fa fa-check-circle"></i>
+                <h2>Booking<br>Confirmed!</h2>
+                <p>The auditorium has been successfully booked.</p>
+            </div>
+        </div>
+        <div class="confirmation-card-btn">
+            <h3><a href="{{url_for('booked_slot')}}">See Your Slot</a></h3>
+        </div>
+    </div>
+        <!-- <footer class="bottom">
+            <div class="address">
+                <h3>Guru Nanak College (Autonomous)</h3>
+                <p>Affiliated to University of Madras</p>
+                <p>Accredited at 'A++' Grade by NAAC | ISO 9001:2015 Certified</p>
+                <p>161, Guru Nanak Salai, Velachery, Chennai-600042, Tamil Nadu.</p>
+                <div class="contact">
+                    <h4>Contact Us</h4>
+                    <p><b>Tel:</b> 044-22451746, 044-22444621</p>
+                    <p><b>Email:</b> principal@gurunanakcollege.edu.in</p>
+                    <div class="social-icons">
+                        <i class="fa fa-facebook-square"></i>
+                        <i class="fa fa-youtube-play"></i>
+                        <i class="fa fa-instagram"></i>
+                        <i class="fa fa-linkedin"></i>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    -->
+</body>
+</html>
